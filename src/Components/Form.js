@@ -1,13 +1,13 @@
 import React from "react";
 
-class Info extends React.Component {
+class Form extends React.Component {
     render() {
         return(
             <div>
-                <h2>Info component</h2>
+                <h2>Form component</h2>
             </div>
         )
     };
 }
 
-export default Info;
+export default Form;

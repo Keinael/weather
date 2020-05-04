@@ -1,13 +1,13 @@
 import React from "react";
 
-class Info extends React.Component {
+class Weather extends React.Component {
     render() {
         return(
             <div>
-                <h2>Info component</h2>
+                <h2>Weather component</h2>
             </div>
         )
     };
 }
 
-export default Info;
+export default Weather;
