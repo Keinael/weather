@@ -17,10 +17,10 @@ class App extends React.Component {
   }
 
   gettingWeather = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
     const CITY = e.target.elements.city.value;
 
-    if (CITY) {      
+    if (CITY) {
       const API_URL = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=metric`);
       const DATA = await API_URL.json();
 
@@ -37,31 +37,48 @@ class App extends React.Component {
         country: DATA.sys.country,
         sunrise: sunrise_date_parsed,
         sunset: sunset_date_parsed,
-        error: ""
+        error: undefined
+      });
+    } else {
+      this.setState({
+        temp: undefined,
+        city: undefined,
+        country: undefined,
+        sunrise: undefined,
+        sunset: undefined,
+        error: "Input city"
       });
     }
-    
   }
 
   render() {
-    return(
-      <div>
-        <Info />
-        <Form 
-          weatherMethod={this.gettingWeather}
-        />        
-        <Weather 
-          temp = {this.state.temp}
-          city = {this.state.city}
-          country = {this.state.country}
-          sunrise = {this.state.sunrise}
-          sunset = {this.state.sunset}
-          error = {this.state.error}
-        />
+    return (
+      <div className="wrapper">
+        <div className="main">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-5 info">
+                <Info />
+              </div>
+              <div className="col-sm-7 form">
+                <Form
+                  weatherMethod={this.gettingWeather}
+                />
+                <Weather
+                  temp={this.state.temp}
+                  city={this.state.city}
+                  country={this.state.country}
+                  sunrise={this.state.sunrise}
+                  sunset={this.state.sunset}
+                  error={this.state.error}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
 }
-
 
 export default App;
